@@ -9,11 +9,11 @@ This project automates the setup of a development environment for working with P
 
 ## How To Build The Virtual Machine
 Building the virtual machine is this easy:
-```
-$ git clone https://github.com/wfsneto/trusty64-php-apache.git
-$ cd trusty64-php-apache
-$ vagrant up
-```
+
+    $ git clone https://github.com/wfsneto/trusty64-php-apache.git
+    $ cd trusty64-php-apache
+    $ vagrant up
+
 ### What's In The Box
 
 #### Server
@@ -25,7 +25,6 @@ $ vagrant up
 
 #### Databases
 * MySQL 5.5.37
- * libmysql 5.5.37
  * user: root
  * pass: raquel
 * PostgreSQL 9.3.4
