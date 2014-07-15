@@ -5,8 +5,6 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.boot_timeout = 3
-
   # Configure The Box
   config.vm.box = "wfsneto/trusty64-php-apache"
   config.vm.hostname = "trusty64-php-apache"
@@ -31,15 +29,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.network :forwarded_port, guest: 3306, host: 33060
   config.vm.network :forwarded_port, guest: 5432, host: 54320
 
+  # Configure The Public Key For SSH Access
   config.vm.provision :shell do |s|
-    # Configure The Public Key For SSH Access
     s.inline = "echo $1 | tee -a /home/vagrant/.ssh/authorized_keys"
     s.args = [File.read(File.expand_path("~/.ssh/id_rsa.pub"))]
+  end
 
+  # Copy The SSH Private Keys To The Box
+  key = "~/.ssh/id_rsa"
+  config.vm.provision :shell do |s|
     s.privileged = false
-
-    # Copy The SSH Private Keys To The Box
-    key = "~/.ssh/id_rsa"
     s.inline = "echo \"$1\" > /home/vagrant/.ssh/$2 && chmod 600 /home/vagrant/.ssh/$2"
     s.args = [File.read(File.expand_path(key)), key.split('/').last]
   end
