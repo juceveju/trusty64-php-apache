@@ -28,9 +28,12 @@ Building the virtual machine is this easy:
  * user: root
  * pass: raquel
 * PostgreSQL 9.3.4
+ * user: admin
+ * pass: admin
 
 #### Tools
 * phpMyAdmin 4.0.10
+* phpPgAdmin
 * Git 1.9.1
 * Composer
 
